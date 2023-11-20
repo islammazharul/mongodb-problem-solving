@@ -45,163 +45,158 @@ db.test.updateOne({
 
 
 //implicit and, 
-// db.test.find({ gender: "Female", age: { $gte: 18, $lte: 30 } }, { age: 1, gender: 1 }).sort({ age: 1})
+ db.test.find({ gender: "Female", age: { $gte: 18, $lte: 30 } }, { age: 1, gender: 1 }).sort({ age: 1})
 
-// db.test.find({
-//     gender: "Male",
-//     age: {$nin: [20,22,24,26]},
-//     interests: {$in: ["Gaming", "Cooking"]}},
-//     {age:1, gender:1, interests:1})
+ db.test.find({
+     gender: "Male",
+     age: {$nin: [20,22,24,26]},     interests: {$in: ["Gaming", "Cooking"]}},
+     {age:1, gender:1, interests:1})
 
-// db.test.find({ gender: "Female", age: { $gte: 18, $lte: 30 } }, { age: 1, gender: 1 }).sort({ age: 1})
+ db.test.find({ gender: "Female", age: { $gte: 18, $lte: 30 } }, { age: 1, gender: 1 }).sort({ age: 1})
 
-// db.test.find({
-//   "skills.name" : {$in: ["JAVASCRIPT", "JAVA"]}
-// }).project({skills:1}).sort({age:1})
+ db.test.find({
+   "skills.name" : {$in: ["JAVASCRIPT", "JAVA"]}
+ }).project({skills:1}).sort({age:1})
 
 // explicit $and
 
-// db.test.find({
+ db.test.find({
     
-//     $and: [
-//         {gender: "Female"},
-//         {age: {$gt:18}},
-//         {age: {$lt:30}},
-//         ]
-// }).project({age:1}).sort({age:1})
+    $and: [
+         {gender: "Female"},
+         {age: {$gt:18}},
+         {age: {$lt:30}},
+         ]
+ }).project({age:1}).sort({age:1})
 
-// explicit $or
+ explicit $or
 
-// db.test.find({
+ db.test.find({
     
-//     $or: [
-//         {gender: "Female"},
-//         {age: {$gt:18}},
-//         {age: {$lt:30}},
-//         ]
-// }).project({age:1}).sort({age:1})
+     $or: [
+         {gender: "Female"},
+         {age: {$gt:18}},
+         {age: {$lt:30}},
+         ] }).project({age:1}).sort({age:1})
 
-// db.test.find({
+ db.test.find({
     
-//     $or: [
-//         {interests: "Cooking"},
-//         {interests: "Travelling"},
-//         ]
-// }).project({interests:1}).sort({age:1})
+     $or: [
+         {interests: "Cooking"},
+         {interests: "Travelling"},
+         ]
+ }).project({interests:1}).sort({age:1})
 
-// db.test.find({
+ db.test.find({
     
-//     $or: [
-//         {"skills.name": "JAVASCRIPT"},
-//         {"skills.name": "JAVA"},
-//         ]
-// }).project({skills: 1})
+     $or: [
+         {"skills.name": "JAVASCRIPT"},
+         {"skills.name": "JAVA"},
+         ]
+ }).project({skills: 1})
 
 
-// db.test.find({interests: {$type: "array", $exists: true} })
-// db.test.find({friends: {$size: 0}}).project({friends: 1})
+ db.test.find({interests: {$type: "array", $exists: true} })
+ db.test.find({friends: {$size: 0}}).project({friends: 1})
 
 
-// db.test.find({
-//     interests: {$all: ["Cooking", "Gaming"]}
-// }).project({interests:1})
+ db.test.find({
+     interests: {$all: ["Cooking", "Gaming"]}
+ }).project({interests:1})
 
-// db.test.find({
-//     skills: {
-//         $elemMatch: {
-//             name: "JAVASCRIPT",
-//             level: "Intermidiate"
-//         }
-//     }
-// }).project({ skills: 1 })
+ db.test.find({
+     skills: {
+         $elemMatch: {
+             name: "JAVASCRIPT",
+             level: "Intermidiate"
+         }
+     }
+ }).project({ skills: 1 })
 
-// update operator
-// db.test.updateOne(
-//   {_id: ObjectId("6406ad63fc13ae5a40000066")},
-//  primitive er jonno $set but non primitive er jonno $addToSet use korbo 
-//   {$set: {
-//       age: 13
-//   }}
-// )
+ update operator db.test.updateOne(
+   {_id: ObjectId("6406ad63fc13ae5a40000066")},
+  primitive er jonno $set but non primitive er jonno $addToSet use korbo 
+   {$set: {
+       age: 13
+   }}
+ )
 
-// db.test.updateOne(
-//     { _id: ObjectId("6406ad63fc13ae5a40000066") },
-//     {
-//         $addToSet: {
-//             friends: { $each: ["Robin", "Islam"] }
-//         }
-//     }
-// )
-// db.test.updateOne(
-//     { _id: ObjectId("6406ad63fc13ae5a40000066") },
-//     {
-//         $push: {
-//             friends: { $each: ["Robin", "Islam"] }
-//         }
-//     }
-// )
+ db.test.updateOne(
+     { _id: ObjectId("6406ad63fc13ae5a40000066") },
+     {
+         $addToSet: {
+            friends: { $each: ["Robin", "Islam"] }
+         }
+     }
+ )
+ db.test.updateOne(
+     { _id: ObjectId("6406ad63fc13ae5a40000066") },
+     {
+         $push: {
+             friends: { $each: ["Robin", "Islam"] }
+         }     }
+ )
 
-// db.test.updateOne(
-//   {_id: ObjectId("6406ad63fc13ae5a40000066")},
-//   {$unset: {
-//       age: ""
-//   }}
-// )
-// db.test.updateOne(
-//   {_id: ObjectId("6406ad63fc13ae5a40000066")},
-//   {$pop: {
-//       friends: 1
-//   }}
-// )
-// db.test.updateOne(
-//   {_id: ObjectId("6406ad63fc13ae5a40000066")},
-//   {$pop: {
-//       friends: -1
-//   }}
-// )
-// db.test.updateOne(
-//   {_id: ObjectId("6406ad63fc13ae5a40000066")},
-//   {$pull: {
-//       languages: "Estonian"
-//   }}
-// )
+ db.test.updateOne(
+   {_id: ObjectId("6406ad63fc13ae5a40000066")},
+   {$unset: {
+       age: ""
+   }}
+ )
+ db.test.updateOne(
+   {_id: ObjectId("6406ad63fc13ae5a40000066")},
+   {$pop: {
+       friends: 1
+   }}
+ )
+ db.test.updateOne(
+   {_id: ObjectId("6406ad63fc13ae5a40000066")},
+   {$pop: {
+       friends: -1
+   }}
+ )
+ db.test.updateOne(
+   {_id: ObjectId("6406ad63fc13ae5a40000066")},
+   {$pull: {
+       languages: "Estonian"
+   }}
+ )
 
-// db.test.updateOne(
-//   {_id: ObjectId("6406ad63fc13ae5a40000066")},
-//   {$pullAll: {
-//       languages: [ "Assamese", "Portuguese" ]
-//   }}
-// )
+ db.test.updateOne(
+   {_id: ObjectId("6406ad63fc13ae5a40000066")},
+   {$pullAll: {
+       languages: [ "Assamese", "Portuguese" ]
+   }}
+ )
 
-// db.test.updateOne(
-//   {_id: ObjectId("6406ad63fc13ae5a40000066")},
-//   {$set: {
-//       "address.city": "dhaka",
-//       "address.country": "bangladesh",
-//   }}
-// )
+ db.test.updateOne(
+   {_id: ObjectId("6406ad63fc13ae5a40000066")},
+   {$set: {
+       "address.city": "dhaka",
+       "address.country": "bangladesh",
+   }}
+ )
 
-// db.test.updateOne(
-//   {_id: ObjectId("6406ad63fc13ae5a40000066"), "education.degree": "Master of Fine Arts"},
-//   {$set: {
-//       "education.$.degree": "Science"
-//   }}
-// )
+ db.test.updateOne(
+   {_id: ObjectId("6406ad63fc13ae5a40000066"), "education.degree": "Master of Fine Arts"},
+   {$set: {
+       "education.$.degree": "Science"   }}
+ )
 
 
-// db.test.updateOne(
-//   {_id: ObjectId("6406ad63fc13ae5a40000066")},
-//   {$inc: {
-//       salary: 5
-//   }}
-// )
+ db.test.updateOne(
+   {_id: ObjectId("6406ad63fc13ae5a40000066")},
+   {$inc: {
+       salary: 5
+   }}
+ )
 
-// db.test.deleteOne(
-//   {_id: ObjectId("6406ad63fc13ae5a40000066")},
+ db.test.deleteOne(
+   {_id: ObjectId("6406ad63fc13ae5a40000066")},
   
-// )
+ )
 
-// db.testing.drop({ writeConcern: { w: 1 } })
+ db.testing.drop({ writeConcern: { w: 1 } })
 
 
 
